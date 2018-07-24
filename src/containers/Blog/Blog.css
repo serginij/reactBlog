@@ -1,0 +1,14 @@
+.Blog header {
+    background: #4DB6AC;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+    text-align: center;
+    color: white;
+    height: 4em;
+}
+
+.Header h2 {
+    color: white;
+    cursor: pointer;
+}
