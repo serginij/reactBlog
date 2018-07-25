@@ -1,8 +1,8 @@
 ## Blog using React.js Redux + React Router v4
 
-** Interface of app **
+**Interface of app**
 
-![Main page](./screenshots/Main page.png)
-![Post](./screenshots/Post.png)
-![Edit Post](./screenshots/Editing Post.png)
-![New Post](./screenshots/New Post.png)
+![Main page](https://github.com/serginij/reactBlog/blob/master/src/screenshots/Main%20page.png)
+![Post](https://github.com/serginij/reactBlog/blob/master/src/screenshots/Post.png)
+![Edit Post](https://github.com/serginij/reactBlog/blob/master/src/screenshots/Editing%20Post.png)
+![New Post](https://github.com/serginij/reactBlog/blob/master/src/screenshots/New%20Post.png)
