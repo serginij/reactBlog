@@ -6,7 +6,7 @@ import * as actionCreators from '../../store/actions';
 
 import './Cards.css';
 import Card from '../../components/Card/Card';
-import Post from '../../components/Post/Post';
+import Post from '../Post/Post';
 
 let post = <h4>wait</h4>;
 
@@ -25,6 +25,7 @@ class Cards extends Component {
         this.props.history.push({pathname: '/posts/' + id});
         let selected = this.props.posts[id];
             post = <Post 
+                    index={id}
                     title={selected.title}
                     text={selected.text}
                     tags={selected.tags}

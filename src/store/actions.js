@@ -7,6 +7,8 @@ export const DELETE_POST_FAIL = 'DELETE_POST_FAIL';
 export const SELECT_POST = 'SELECT_POST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const FETCH_ORDERS_FAIL = 'FETCH_ORDERS_FAIL';
+export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
+export const EDIT_POST_FAIL = 'EDIT_POST_FAIL';
 
 export const addPost = (data) => {
     return dispatch => {
@@ -94,6 +96,32 @@ export const fetchPosts = () => {
             })
             .catch(error => {
                 dispatch(fetchPostsFail(error));
+            });
+    }
+};
+
+export const editPostSuccess = (res) => {
+    return {
+        type: EDIT_POST_SUCCESS,
+        response: res
+    }
+};
+
+export const editPostFail = (err) => {
+    return {
+        type: EDIT_POST_FAIL,
+        error: err
+    }
+};
+
+export const editPost = (id, data) => {
+    return dispatch => {
+        axios.put('https://registration-26002.firebaseio.com/test/' + id + '.json', data)
+            .then(response => {
+                dispatch(editPostSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(editPostFail(error));
             });
     }
 };

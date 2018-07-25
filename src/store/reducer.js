@@ -49,7 +49,18 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 post: action.post,
                 reloadPosts: false
-            }        
+            }
+        case actionTypes.EDIT_POST_SUCCESS:
+            return {
+                ...state,
+                response: action.response,
+                reloadPosts: true
+            }
+        case actionTypes.EDIT_POST_FAIL:
+            return {
+                ...state,
+                error: action.error
+            }                
     }
 
     return state;
