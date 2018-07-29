@@ -16,7 +16,6 @@ class Post extends Component {
         let post = this.props.posts[this.props.index];
         post.tag = post.tags.join(' ');
         post.date = post.date;
-        console.log('[Post.js]-> post -- ', post);
         this.setState({ post: post });
     }
 

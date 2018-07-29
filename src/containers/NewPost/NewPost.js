@@ -43,7 +43,7 @@ class NewPost extends Component {
     }
 
     render() {
-        const { title, text, tag, name } = this.state.data;
+        const { data: { title, text, tag, name } } = this.state;
 
         return(
                 <form className='NewPost'>
