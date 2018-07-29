@@ -26,7 +26,7 @@ class NewPost extends Component {
         e.preventDefault();
         let id = Math.random().toString(36).substr(2, 9).toString();
         let tags = this.state.data.tag.split(' ');
-        let date = new Date().toString();
+        let date = new Date().toString().slice(3,21);
         let dataToServer = {
             picture: "http://placehold.it/32x32",
             id: id,
@@ -43,6 +43,8 @@ class NewPost extends Component {
     }
 
     render() {
+        const { title, text, tag, name } = this.state.data;
+
         return(
                 <form className='NewPost'>
                     <h2>New Post</h2>
@@ -53,7 +55,7 @@ class NewPost extends Component {
                         placeholder='Enter title'
                         id='title'
                         onChange={this.onChangeHandler}
-                        value={this.state.data.title} />
+                        value={title} />
                     <label htmlFor='text'>Text</label>
                     <textarea
                         required
@@ -61,7 +63,7 @@ class NewPost extends Component {
                         placeholder='Enter text'
                         id='text'
                         onChange={this.onChangeHandler}
-                        value={this.state.data.text} />
+                        value={text} />
                     <article className='Tags'>    
                         <label htmlFor='tags'>Tags<br/>
                             <input 
@@ -70,7 +72,7 @@ class NewPost extends Component {
                                 placeholder='tags'
                                 id='tag'
                                 onChange={this.onChangeHandler}
-                                value={this.state.data.tag} />
+                                value={tag} />
                         </label>
                         <br/>
                         <label htmlFor='name'>Name<br/>
@@ -80,7 +82,7 @@ class NewPost extends Component {
                                 placeholder='Your Name'
                                 id='name'
                                 onChange={this.onChangeHandler}
-                                value={this.state.data.name} />
+                                value={name} />
                         </label>
                     </article>
                     <button type='submit' onClick={this.addPostHandler}>Add post</button>  

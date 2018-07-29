@@ -31,7 +31,7 @@ class Cards extends Component {
                     tags={selected.tags}
                     name={selected.name}
                     img={selected.picture}
-                    time={selected.date.slice(3,21)}
+                    time={selected.date}
                     deletePost={() => {
                         this.props.history.replace('/posts');
                         this.props.deletePost(selected.key);

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import * as actionCreators from '../../store/actions';
 import './Post.css';
+import EditPost from '../../components/EditPost/EditPost';
 
 class Post extends Component {
     state = {
@@ -14,7 +15,7 @@ class Post extends Component {
     componentDidMount() {
         let post = this.props.posts[this.props.index];
         post.tag = post.tags.join(' ');
-        post.date = post.date.slice(3, 21);
+        post.date = post.date;
         console.log('[Post.js]-> post -- ', post);
         this.setState({ post: post });
     }
@@ -51,65 +52,30 @@ class Post extends Component {
                 <li key={index}>#{tag}</li>
             ))}
         </ul>
-        
+        const { title, text, img, name, time, deletePost } = this.props;
+
         let post =
             <div className='Post'>
-                <h3>{this.props.title}</h3>
-                <p>{this.props.text}</p>
+                <h3>{title}</h3>
+                <p>{text}</p>
                 { tags } 
                 <div className='Author'>
-                    <img src={this.props.img} alt='Avatar' />
-                    <b>{this.props.name}</b>
-                    <b>{this.props.time}</b>
+                    <img src={img} alt='Avatar' />
+                    <b>{name}</b>
+                    <b>{time}</b>
                 </div>
                 <article className='Buttons'>
-                    <button className='Delete' onClick={this.props.deletePost}>Delete Post</button>
+                    <button className='Delete' onClick={deletePost}>Delete Post</button>
                     <button className='Edit' onClick={this.editPostHandler}>Edit Post</button>
                 </article>    
             </div>
 
         if (this.state.edit) {
-            post =
-                <form className='Form'>
-                    <h2>Edit Post</h2>
-                    <label htmlFor='title'>Title</label>
-                    <input
-                        required 
-                        type='text'
-                        id='title'
+            post = <EditPost
+                        values={this.state.post}
                         onChange={this.onChangeHandler}
-                        value={this.state.post.title} />
-                    <label htmlFor='text'>Text</label>
-                    <textarea
-                        required
-                        type='text'
-                        id='text'
-                        onChange={this.onChangeHandler}
-                        value={this.state.post.text} />
-                    <article className='Tags'>    
-                        <label htmlFor='tags'>Tags<br/>
-                            <input 
-                                required
-                                type='text'
-                                id='tag'
-                                onChange={this.onChangeHandler}
-                                value={this.state.post.tag} />
-                        </label>
-                        <br/>
-                        <label htmlFor='name'>Name<br/>
-                            <input 
-                                required
-                                type='text'
-                                id='name'
-                                onChange={this.onChangeHandler}
-                                value={this.state.post.name} />
-                        </label>
-                    </article>
-                    <article className='Buttons'>
-                        <button className='Delete' onClick={this.onCancelChanges}>Cancel</button>
-                        <button className='Edit' onClick={this.onSaveChanges}>Save</button>
-                    </article>
-                </form>
+                        cancelHandler={this.onCancelChanges}
+                        editHandler={this.onSaveChanges} />
         }
         
         return (
